@@ -44,9 +44,9 @@ def modifyImageTopic(bag, topic):
 def modifyStdMsgTopic(bag, topic):
     pass
 
-if __name__ == '__main__':
+def modifyMITMedfield(inpath='/home/erl/rosbag/mit_medfield.bag', outpath='/home/erl/rosbag/mit_medfield_modified.bag'):
     '''
-    /clock
+    Topic list:
     /flea3/camera_info
     /flea3/image_raw
     /mavros/distance_sensor/lidarlite_pub
@@ -58,15 +58,11 @@ if __name__ == '__main__':
     /mavros/local_position/velocity
     /mavros/rc/in
     /mavros/state
-    /rosout
-    /rosout_agg
     '''
-
-    bag = rosbag.Bag('/home/erl/rosbag/mit_medfield.bag', 'r')
+    bag = rosbag.Bag(inpath, 'r')
     topic_list = readBagTopicList(bag)
 
-
-    with rosbag.Bag('/home/erl/rosbag/mit_medfield_modified.bag', 'w') as outbag:
+    with rosbag.Bag(outpath, 'w') as outbag:
         for idx, topic_name in enumerate(topic_list):
             for topic, msg, t in bag.read_messages(topics=[topic_name]):
             # This also replaces tf timestamps under the assumption 
@@ -89,5 +85,25 @@ if __name__ == '__main__':
             print("Finished processing topic: {}; Progress: {}/{}".format(topic_name, idx, len(topic_list)))
             
     print("DONE!")
+    return
+
+def testModifiedBag(mdf_path="/home/erl/rosbag/mit_medfield_modified.bag"):
+    '''
+    Compare timestamps:
+    '''    
+    bag = rosbag.Bag(mdf_path, 'r')
+    topic_list = readBagTopicList(bag)
+
+    for topic_name in topic_list:
+        for topic, msg, t in bag.read_messages(topics=[topic_name]):
+            # timestamps should be in the same range but slightly different
+            print("Topic name: {}; Sync timestamp: {}; Header timestamp: {}".format(topic, msg.header.stamp, t))
+            break
+    return
+
+
+if __name__ == '__main__':
+    # modifyMITMedfield()
+    testModifiedBag()
     
     
