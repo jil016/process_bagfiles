@@ -24,25 +24,12 @@ def readBagInfo(bag):
     return yaml.load(bag._get_yaml_info())
 
 def readBagTopicList(bag):
-    topicList = []
-    for topic, _, _ in bag.read_messages():
-        if topicList.count(topic) == 0:
-            topicList.append (topic)
+    topics = bag.get_type_and_topic_info()[1].keys()
+    types = []
+    for i in range(0,len(bag.get_type_and_topic_info()[1].values())):
+        types.append(bag.get_type_and_topic_info()[1].values()[i][0])
 
-    print '{0} topics found:'.format(len(topicList))
-    return topicList
-
-def addImageTopic():
-    pass
-
-def removeImageTopic():
-    pass
-
-def modifyImageTopic(bag, topic):
-    pass
-
-def modifyStdMsgTopic(bag, topic):
-    pass
+    return topics
 
 def modifyMITMedfield(inpath='/home/erl/rosbag/mit_medfield.bag', outpath='/home/erl/rosbag/mit_medfield_modified.bag'):
     '''
@@ -101,9 +88,29 @@ def testModifiedBag(mdf_path="/home/erl/rosbag/mit_medfield_modified.bag"):
             break
     return
 
+def testPhoenixTimestamps(inpath="/home/erl/rosbag/phoenix/outdoor_joy_2020-10-18-13-03-47.bag"):
+    bag = rosbag.Bag(inpath, 'r')
+    info_dict = readBagInfo(bag)
+    start_time = info_dict['start']
+    end_time = info_dict['end']
+    duration = info_dict['duration']
+    imu_topic = "/acl_jackal/forward/imu"
+    image_topic = "/acl_jackal/forward/color/image_rect"
+
+    imu_frames = []
+    image_frames = []
+
+    # IMU data
+    for topic, msg, t in bag.read_messages(topics=[imu_topic]):
+        a = 1
+    
+
+
+    return
 
 if __name__ == '__main__':
     # modifyMITMedfield()
-    testModifiedBag()
+    # testModifiedBag()
+    testPhoenixTimestamps()
     
     
