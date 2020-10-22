@@ -1,9 +1,0 @@
-# pip install
-
-pycryptodomex
-pyyaml
-gnupg
-rospkg
-opencv-python==4.2.0.32
-numpy
-

@@ -1,0 +1,16 @@
+# Python
+/.mypy_cache/
+*.egg-info/
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pth
+.pytest_cache/
+
+# Project
+.spyproject/
+.vscode/
+.idea/
+.anaconda/
+
