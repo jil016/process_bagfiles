@@ -15,7 +15,7 @@ pre-commit install
 echo_bold "==> Installing the package"
 pip install -e .
 
-echo_bold "\nGreat! You can start using this!
+echo_bold "\nGreat! You can start with:
 
   $ source .anaconda/bin/activate
 "

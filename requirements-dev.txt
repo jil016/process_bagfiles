@@ -1,5 +1,5 @@
 # required python=2.7
-# ros kinetic or melodic
+# For ros kinetic or melodic
 pre-commit
 numpy
 pycryptodomex
@@ -7,6 +7,7 @@ pyyaml
 gnupg
 rospkg
 opencv-python==4.2.0.32
+imageio==2.6
 
 # checking code
 pylint==1.7.6

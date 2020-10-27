@@ -1,5 +1,4 @@
 # process_bagfiles
-[![python-image]][python-url]
 
 ## Installation
 
@@ -18,5 +17,5 @@ make test
 
 ```bash
 source .anaconda/bin/activate
-python ./tools/main.py
+python ./rosbag_tools/main.py
 ``` 
