@@ -116,29 +116,6 @@ def testModifiedBag(mdf_path="/home/erl/rosbag/mit_medfield_modified.bag"):
     return
 
 
-def testPhoenixTimestamps(
-    inpath="/home/erl/rosbag/phoenix/outdoor_joy_2020-10-18-13-03-47.bag",
-):
-    bag = rosbag.Bag(inpath, "r")
-    info_dict = readBagInfo(bag)
-    start_time = info_dict["start"]
-    end_time = info_dict["end"]
-    duration = info_dict["duration"]
-    imu_topic = "/acl_jackal/forward/imu"
-    image_topic = "/acl_jackal/forward/color/image_rect"
-
-    imu_frames = []
-    image_frames = []
-
-    # IMU data
-    for topic, msg, t in bag.read_messages(topics=[imu_topic]):
-        a = 1
-
-    print("Good")
-    return
-
-
 if __name__ == "__main__":
-    # modifyMITMedfield()
-    # testModifiedBag()
-    testPhoenixTimestamps()
+    modifyMITMedfield()
+    testModifiedBag()
