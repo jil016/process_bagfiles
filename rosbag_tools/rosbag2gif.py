@@ -62,9 +62,9 @@ if __name__ == "__main__":
     # args = parser.parse_args()
 
     rosbag2gif(
-        inpath="/home/erl/rosbag/realsense_indoor2_1216.bag",
-        outpath="/home/erl/rosbag/realsense_indoor2_1216.gif",
-        topic="/camera/infra1/image_rect_raw",
+        inpath="/home/erl/rosbag/rs_d435i_mesa_indoor_chair_1.bag",
+        outpath="/home/erl/rosbag/rs_d435i_mesa_indoor_chair_1.gif",
+        topic="/camera/infra1/image_rect_raw/compressed",
         image_size=None,
         duration=0.1,
         length=15,
